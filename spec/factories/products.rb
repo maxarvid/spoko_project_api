@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :product do
-    name { "MyString" }
-    size {"Mytext"}
+    name { "T-Shirt" }
+    size {"large"}
   end
 end
