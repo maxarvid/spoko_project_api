@@ -1,5 +1,6 @@
-RSpec.describe 'GET /api/products' do
+RSpec.describe 'GET /api/products:id' do
     let!(:products) { 5.times {create(:product) }}
+    
   
     before do
       get '/api/products'
@@ -18,5 +19,5 @@ RSpec.describe 'GET /api/products' do
       end
 
 
-  
+
   end
