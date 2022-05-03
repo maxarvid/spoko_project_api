@@ -11,5 +11,11 @@ class Api::ProductsController < ApplicationController
 
   end
 
+  def create
+    order = Product.all 
+    render json: { product: product}, status: :created 
+  end
+
+
 
 end

@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe Product, type: :model do
   describe 'Products database Table check' do
     it { is_expected.to have_db_column(:size).of_type(:text) }
@@ -10,11 +8,7 @@ RSpec.describe Product, type: :model do
   describe 'Validations' do
     it { is_expected.to validate_presence_of :size }
     it { is_expected.to validate_presence_of :name }
-  end
-
-  describe 'Validations' do
-    it { is_expected.to validate_presence_of :size }
-    it { is_expected.to validate_presence_of :name }
+    it { is_expected.to validate_presence_of :price }
   end
 
   describe 'Associations' do
@@ -22,7 +16,7 @@ RSpec.describe Product, type: :model do
 
   describe 'Factory' do
     it 'is expected to be valid' do
-      expect(create(:order)).to be_valid
+      expect(create(:product)).to be_valid
     end
   end
 end
