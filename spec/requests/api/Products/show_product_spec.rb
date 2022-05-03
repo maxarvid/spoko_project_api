@@ -1,4 +1,4 @@
-RSpec.describe 'GET /api/products:id' do
+RSpec.describe 'show collection of products with GET /api/products' do
     let!(:products) { 5.times {create(:product) }}
     
   
