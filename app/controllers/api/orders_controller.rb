@@ -2,13 +2,9 @@ class Api::OrdersController < ApplicationController
   def create
     order = Order.create(order_params)
     product = Product.find(params[:order][:product_id])
-    order.items.create(product: product)
-    render json: { order: order}, status: :created 
+    order.items.create(product:)
+    render json: { order: }, status: :created
   end
-
-  # def update
- 
-  # end
 
   private
 

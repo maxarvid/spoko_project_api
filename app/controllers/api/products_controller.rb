@@ -11,8 +11,4 @@ class Api::ProductsController < ApplicationController
     render json: { error: 'No such item exists' }, status: 422
   end
 
-  # def create
-  #   order = Product.all
-  #   render json: { product: }, status: :created
-  # end
 end
