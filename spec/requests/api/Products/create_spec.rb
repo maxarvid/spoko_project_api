@@ -20,4 +20,16 @@ RSpec.describe ' Create an order with POST /api/orders', type: :request do
   it 'is expected to associate an Order with user' do
     expect(@order.user).to eq user
   end
+
+  it 'is expected to create an order_item' do
+    expect(@order.items).to_not eq nil 
+  end
+
+  it 'is expected to assocaite the product with an order ' do
+    expect(@order.products.first).to eq product 
+  end
+  
+
+
+
 end
