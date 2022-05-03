@@ -6,6 +6,10 @@ class Api::OrdersController < ApplicationController
     render json: { order: order}, status: :created 
   end
 
+  def put
+ 
+  end
+
   private
 
   def order_params
