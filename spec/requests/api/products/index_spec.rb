@@ -14,7 +14,7 @@ RSpec.describe 'GET /api/products' do
   end
 
   it 'is expected to return products names' do
-    expect(response_json['products'].first['name']).to eq 'T-Shirt'
+    expect(response_json['products'].first['name']).to eq 't-shirt'
   end
 
   it 'is expected to return products size' do

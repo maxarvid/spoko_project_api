@@ -1,3 +1,3 @@
 class Product < ApplicationRecord
-    validates_presence_of :name, :size
+    validates_presence_of :name, :size, :price
 end
