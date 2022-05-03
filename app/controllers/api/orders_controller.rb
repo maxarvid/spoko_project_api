@@ -6,14 +6,13 @@ class Api::OrdersController < ApplicationController
     render json: { order: order}, status: :created 
   end
 
-  def put
+  # def update
  
-  end
+  # end
 
   private
 
   def order_params
     params[:order].permit(:user_id)
   end
-
 end

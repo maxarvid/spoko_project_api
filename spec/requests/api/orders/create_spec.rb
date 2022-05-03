@@ -1,7 +1,8 @@
-RSpec.describe ' Create an order with POST /api/orders', type: :request do
+RSpec.describe 'Create an order with POST /api/orders', type: :request do
   let(:user) { create(:user) }
   let(:product) { create(:product) }
   subject { response }
+
   before do
     post '/api/orders', params: {
       order: {
@@ -22,14 +23,10 @@ RSpec.describe ' Create an order with POST /api/orders', type: :request do
   end
 
   it 'is expected to create an order_item' do
-    expect(@order.items).to_not eq nil 
+    expect(@order.items).to_not eq nil
   end
 
   it 'is expected to assocaite the product with an order ' do
-    expect(@order.products.first).to eq product 
+    expect(@order.products.first).to eq product
   end
-  
-
-
-
 end
