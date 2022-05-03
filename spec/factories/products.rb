@@ -1,6 +1,8 @@
 FactoryBot.define do
   factory :product do
-    name { "T-Shirt" }
-    size {"large"}
+    name
+    size
+    price
+
   end
 end
