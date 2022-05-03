@@ -7,4 +7,8 @@ end
 
 it { is_expected.to have_http_status 201 }
 
+it 'is expected to create an instance of Order' do
+    expect(Order.last).to_not eq nil
+end
+
 end
