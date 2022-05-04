@@ -29,4 +29,19 @@ RSpec.describe 'Create an order with POST /api/orders', type: :request do
   it 'is expected to assocaite the product with an order ' do
     expect(@order.products.first).to eq product
   end
+  
+  it 'is expected to include an Order ID in the response ' do
+    response_body = JSON.parse(response.body)
+    expect(response_body['order']['id']).to eq @order.id
+  end
+
+  # it 'is expected to include an order items  in the response ' do
+  #   response_body = JSON.parse(response.body)
+  #   expect(response_body['order']['id']).to eq @order.product
+  # end
+
+
 end
+
+# Respond to include the order and order itesm so that this infor can be used on the client side
+# minimum is to include teh order ID in response
