@@ -1,0 +1,25 @@
+// NEW WAY
+
+{
+  "articles": {
+    "team": [
+      {"id": 1, "title": "Team 1", "body": "Team 1 body"},
+      {"id": 2, "title": "Team 2", "body": "Team 2 body"},
+      {"id": 3, "title": "Team 3", "body": "Team 3 body"}
+    ],
+    "matches": [
+      {"id": 1, "title": "Matches 1", "body": "Matches 1 body"},
+      {"id": 2, "title": "Matches 2", "body": "Matches 2 body"},
+      {"id": 3, "title": "Matches 3", "body": "Matches 3 body"}
+    ]
+  }
+}
+
+// OLD WAY
+{
+  "articles": [
+    {"id": 1, "title": "Team 1", "body": "Team 1 body"},
+    {"id": 2, "title": "Team 2", "body": "Team 2 body"},
+    {"id": 3, "title": "Team 3", "body": "Team 3 body"}
+  ]
+}
