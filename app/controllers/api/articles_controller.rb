@@ -5,4 +5,8 @@ class Api::ArticlesController < ApplicationController
     render json: { articles: articles }
   end
 
+  def show
+
+  end
+
 end
