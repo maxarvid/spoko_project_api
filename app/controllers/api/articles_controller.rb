@@ -10,4 +10,8 @@ class Api::ArticlesController < ApplicationController
     render json: { article: article }
   end
 
+  def create
+ 
+  end
+
 end
