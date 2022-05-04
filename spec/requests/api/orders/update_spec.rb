@@ -19,6 +19,7 @@ RSpec.describe 'Update an order with a PUT /api/orders/:id', type: :request do
 
   it 'response with an order confirmation' do
     response_body = JSON.parse(response.body)
+    binding.pry
     expect(response_body['message']).to eq 'Football added'
   end
 
