@@ -25,7 +25,7 @@ RSpec.describe 'Update an order with a PUT /api/orders/:id', type: :request do
       expect(@order.items.count).to eq 3
     end
 
-    it 'is expected one tiems to be a t-shirt' do
+    it 'is expected one items to be a Scarf' do
       expect(order.serialized[:products].last["name"]).to eq "Scarf"
     end
     
