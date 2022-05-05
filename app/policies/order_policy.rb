@@ -7,6 +7,6 @@ class OrderPolicy
   end
 
   def create?
-    user.member? 
+    user.member? || user.admin?
   end
 end
