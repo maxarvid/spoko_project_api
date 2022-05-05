@@ -1,8 +1,8 @@
 class Api::OrdersController < ApplicationController
   before_action :authenticate_user!, only: %i[create show]
   def create
-    binding.pry
-    order = Order.create(order_params)
+    
+    order = authorize Order.create(order_params)
     #order = authorize Order.new(order_params.merge(user_id: [current_user.id] + params[:order][:user_id]))
     product = Product.find(params[:order][:product_id])
     order.items.create(product:)

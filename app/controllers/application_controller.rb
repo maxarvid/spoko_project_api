@@ -7,6 +7,6 @@ class ApplicationController < ActionController::Base
   private
 
   def user_not_authorized
-  render json: { errors: 'You are not authorized to perform this action' }, status: 401
+    render json: { errors: 'you are not authorized to perform this action' }, status: 401
   end
 end

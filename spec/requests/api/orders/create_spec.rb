@@ -3,7 +3,8 @@ RSpec.describe 'Create an order with POST /api/orders', type: :request do
   let(:user) { create(:user) }
   let(:editor) { create(:user, role: :editor) }
   let(:product) { create(:product) }
-  let(:credentials) { user.create_new_auth_token }
+  let(:member_credentials) { user.create_new_auth_token }
+  let(:editor_credentials) { editor.create_new_auth_token }
 
   describe 'succesful ' do
     before do
@@ -11,7 +12,7 @@ RSpec.describe 'Create an order with POST /api/orders', type: :request do
         order: {
           product_id: product.id, user_id: user.id
         }
-      }, headers: credentials
+      }, headers: member_credentials
 
       @order = Order.last
     end
@@ -45,13 +46,13 @@ RSpec.describe 'Create an order with POST /api/orders', type: :request do
         order: {
           product_id: product.id, user_id: editor.id
         }
-      }
+      }, headers: editor_credentials
     end
 
     it { is_expected.to have_http_status 401 }
 
     it 'is expected to respond with an error message' do
-      expect(response_json['message']).to eq 'you are not permitted to perform that action'
+      expect(response_json['errors']).to eq 'you are not authorized to perform this action'
     end
   end
 end
