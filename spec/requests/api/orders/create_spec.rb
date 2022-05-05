@@ -3,7 +3,7 @@ RSpec.describe 'Create an order with POST /api/orders', type: :request do
   let(:user) { create(:user) }
   let(:editor) { create(:user, role: :editor) }
   let(:product) { create(:product) }
-#  let(:credentials) { user.create_new_auth_token }
+  #let(:credentials) { user.create_new_auth_token }
 
   describe 'succesful ' do
     before do
@@ -11,8 +11,8 @@ RSpec.describe 'Create an order with POST /api/orders', type: :request do
         order: {
           product_id: product.id, user_id: user.id
         }
-
-      }
+      }, 
+      #headers: credentials
 
       @order = Order.last
     end
@@ -47,9 +47,7 @@ RSpec.describe 'Create an order with POST /api/orders', type: :request do
           product_id: product.id, user_id: editor.id
         }
       }
-
     end
-    
 
     it { is_expected.to have_http_status 401 }
 
