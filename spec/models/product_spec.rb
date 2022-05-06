@@ -1,6 +1,6 @@
 RSpec.describe Product, type: :model do
   describe 'Products database Table check' do
-    it { is_expected.to have_db_column(:size).of_type(:text) }
+    it { is_expected.to have_db_column(:size).of_type(:string) }
     it { is_expected.to have_db_column(:name).of_type(:string) }
     it { is_expected.to have_db_column(:price).of_type(:float) }
   end
