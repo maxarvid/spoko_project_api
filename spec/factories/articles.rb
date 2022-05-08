@@ -4,6 +4,6 @@ FactoryBot.define do
     body { "We are the champions of the World" }
     author { "MyString" }
     image {}
-    category
+    category 
   end
 end

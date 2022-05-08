@@ -12,14 +12,21 @@ class Api::ArticlesController < ApplicationController
   end
 
   def create
-    new_article = Article.create(params[:article].permit!)
-    render json: { article: new_article }, status: 201
+    article = Article.create(params[:article].permit!)
+    article.attach_image(params[:article][:image].permit!)
+    render json: { article: article }, status: 201
   end
+
+  # def create
+  #   article = Article.create(article_params)
+  #   article.attach_image(params[:article][:image])
+  #   render json: { article: article }, status: 201
+  # end
   
   private
   
   def article_params
-    params[:article].permit(:title, :body, :image)
+    params[:article].permit(:title, :body,)
   end
 
   def serialize_categories(categories)
