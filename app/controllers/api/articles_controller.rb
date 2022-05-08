@@ -12,16 +12,11 @@ class Api::ArticlesController < ApplicationController
   end
 
   def create
-    article = Article.create(params[:article].permit!)
-    article.attach_image(params[:article][:image].permit!)
-    render json: { article: article }, status: 201
+    new_article = Article.create(params[:article].permit!)
+    new_article.attach_image(params[:article][:image].permit!)
+    render json: { article: new_article }, status: 201
   end
 
-  # def create
-  #   article = Article.create(article_params)
-  #   article.attach_image(params[:article][:image])
-  #   render json: { article: article }, status: 201
-  # end
   
   private
   

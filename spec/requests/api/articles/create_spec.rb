@@ -27,11 +27,13 @@ RSpec.describe 'POST /api/articles' do
     expect(@article.body).to eq 'We are the champions of the World'
   end
 
-  # it "is expected to attach an image to the article" do
-  #   expect(@article.image.attached?).to eq true
-  # end
-
   it 'is expected to attach an image to the article' do
-    expect(@article.image).to be_attached
+    expect(@article.image).to eq 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAzwAAAMuCAYAAADc6AZ'
   end
+
+  it "is expected to attach an image to the article" do
+     expect(@article.image.attached?).to eq true
+   end
+
+  
 end

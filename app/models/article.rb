@@ -10,9 +10,7 @@ class Article < ApplicationRecord
     io << decoded_image_data
     io.rewind
     image.attach(
-      io:, filename: "#{title}.#{decoded_data[:extension]}",
-      content_type: decoded_data[:type]
-    )
+      io: io, filename: "#{title}.#{decoded_data[:extension]}", content_type: decoded_data[:type])
   end
 
   private
