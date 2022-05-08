@@ -1,5 +1,5 @@
 class Api::ArticlesController < ApplicationController
-
+  before_action :authenticate_user!, only: %i[create show]
   def index
     categories = Category.all.includes(:articles)
     response = serialize_categories(categories)
@@ -19,7 +19,7 @@ class Api::ArticlesController < ApplicationController
   private
   
   def article_params
-    params[:article].permit(:title, :body)
+    params[:article].permit(:title, :body, :image)
   end
 
   def serialize_categories(categories)

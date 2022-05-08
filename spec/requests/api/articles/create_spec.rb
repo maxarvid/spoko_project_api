@@ -9,8 +9,8 @@ RSpec.describe 'POST /api/articles' do
 
   before do
     post '/api/articles', params: {
-      article: { title: 'News about Spoko', body: 'We are the champions of the World', image: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOoAAADfCAYAAAD4I09QAAABP2lDQ1BJQ0MgUHJvZmlsZQAAKJFjYGASSCwoyGFhYGDIzSspCnJ3UoiIjFJgf8bAysABhJIM3InJxQWOAQE+QCUMMBoVfLvGwAiiL"
-    }
+      article: { title: 'News about Spoko', body: 'We are the champions of the World', image: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOoAAADfCAYAAAD4I09QAAABP2lDQ"
+    }}
     @article = Article.last
   end
 
@@ -28,6 +28,10 @@ RSpec.describe 'POST /api/articles' do
 
   it 'is expected to have a body' do
     expect(@article.body).to eq 'We are the champions of the World'
+  end
+
+  it "is expected to attach an image to the article" do
+    expect(@article.image.attached?).to eq true 
   end
 
   it "is expected to attach an image to the article" do
