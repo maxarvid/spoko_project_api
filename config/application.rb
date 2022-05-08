@@ -17,7 +17,7 @@ Bundler.require(*Rails.groups)
 module SpokoProjectApi
   class Application < Rails::Application
     initializer(:remove_activestorage_routes, after: :add_routing_paths) do |app|
-      app.routes_reloader.paths.delete_if { |path| path =~ /activestorage|actionmailbox/ }
+      app.routes_reloader.paths.delete_if { |path| path =~ /actionmailbox/ }
     end
     config.load_defaults 7.0
     config.api_only = true

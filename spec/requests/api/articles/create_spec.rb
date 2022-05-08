@@ -5,14 +5,13 @@ RSpec.describe 'POST /api/articles' do
   let!(:team_articles) { create_list(:article, 5, category: team_category) }
   let!(:matches_articles) { create_list(:article, 5, category: matches_category) }
 
+  
 
   before do
     post '/api/articles', params: {
-      article: { title: 'News about Spoko', body: 'We are the champions of the World' }
+      article: { title: 'News about Spoko', body: 'We are the champions of the World', image: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOoAAADfCAYAAAD4I09QAAABP2lDQ1BJQ0MgUHJvZmlsZQAAKJFjYGASSCwoyGFhYGDIzSspCnJ3UoiIjFJgf8bAysABhJIM3InJxQWOAQE+QCUMMBoVfLvGwAiiL"
     }
-
     @article = Article.last
-  
   end
 
   subject { response }
@@ -29,6 +28,10 @@ RSpec.describe 'POST /api/articles' do
 
   it 'is expected to have a body' do
     expect(@article.body).to eq 'We are the champions of the World'
+  end
+
+  it "is expected to attach an image to the article" do
+    expect(@article.image).to be_attached
   end
 
 end 
