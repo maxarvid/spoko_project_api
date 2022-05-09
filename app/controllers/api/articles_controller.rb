@@ -8,7 +8,7 @@ class Api::ArticlesController < ApplicationController
 
   def show
     article = Article.find(params[:id])
-    render json: { article: article }
+    render json: { article: }
   end
 
   def create
@@ -18,11 +18,12 @@ class Api::ArticlesController < ApplicationController
     new_article.save
     new_article.attach_image(params[:article][:image])
     render json: { article: new_article }, status: 201
+  rescue StandardError
+    render json: { error: 'Invalid entry' }, status: 422
   end
 
-  
   private
-  
+
   def article_params
     params[:article].permit(:title, :body)
   end
@@ -34,5 +35,4 @@ class Api::ArticlesController < ApplicationController
     end
     response
   end
-
 end
