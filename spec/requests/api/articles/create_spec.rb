@@ -1,9 +1,6 @@
-RSpec.describe 'POST /api/articles' do
+RSpec.describe 'Request spect, create articles - POST /api/articles' do
   let(:user) { create(:user) }
   let!(:team_category) { create(:category, name: 'Team') }
-  # let!(:matches_category) { create(:category, name: 'Matches') }
-  # let!(:team_articles) { create_list(:article, 5, category: team_category) }
-  # let!(:matches_articles) { create_list(:article, 5, category: matches_category) }
   let(:member_credentials) { user.create_new_auth_token }
 
   before do
@@ -26,11 +23,6 @@ RSpec.describe 'POST /api/articles' do
     expect(@article).not_to be nil
     expect(@article.title).to eq 'News about Spoko'
     expect(@article.body).to eq 'We are the champions of the World'
-  end
-
-  it 'is expected to attach an image to the article' do
-    binding.pry
-    expect(@article.image).to eq 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAzwAAAMuCAYAAADc6AZ'
   end
 
   it "is expected to attach an image to the article" do
