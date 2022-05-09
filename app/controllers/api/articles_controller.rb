@@ -12,8 +12,11 @@ class Api::ArticlesController < ApplicationController
   end
 
   def create
-    new_article = Article.create(params[:article].permit!)
-    new_article.attach_image(params[:article][:image].permit!)
+    category = Category.find_by(name: params[:article][:category])
+    new_article = Article.new(article_params)
+    new_article.category = category
+    new_article.save
+    new_article.attach_image(params[:article][:image])
     render json: { article: new_article }, status: 201
   end
 
@@ -21,7 +24,7 @@ class Api::ArticlesController < ApplicationController
   private
   
   def article_params
-    params[:article].permit(:title, :body,)
+    params[:article].permit(:title, :body)
   end
 
   def serialize_categories(categories)

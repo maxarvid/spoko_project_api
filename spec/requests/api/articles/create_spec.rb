@@ -1,19 +1,20 @@
 RSpec.describe 'POST /api/articles' do
-  # let(:user) { create(:user) }
-  let(:team_category) { create(:category, name: 'Team') }
-  let(:matches_category) { create(:category, name: 'Matches') }
-  let!(:team_articles) { create_list(:article, 5, category: team_category) }
-  let!(:matches_articles) { create_list(:article, 5, category: matches_category) }
-  # let(:member_credentials) { user.create_new_auth_token }
+  let(:user) { create(:user) }
+  let!(:team_category) { create(:category, name: 'Team') }
+  # let!(:matches_category) { create(:category, name: 'Matches') }
+  # let!(:team_articles) { create_list(:article, 5, category: team_category) }
+  # let!(:matches_articles) { create_list(:article, 5, category: matches_category) }
+  let(:member_credentials) { user.create_new_auth_token }
 
   before do
     post '/api/articles', params: {
       article: {
         title: 'News about Spoko',
         body: 'We are the champions of the World',
-        image: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAzwAAAMuCAYAAADc6AZ'
+        image: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAzwAAAMuCAYAAADc6AZ',
+        category: 'Team'
       }
-    }
+    }, headers: member_credentials
     @article = Article.last
   end
 
@@ -28,6 +29,7 @@ RSpec.describe 'POST /api/articles' do
   end
 
   it 'is expected to attach an image to the article' do
+    binding.pry
     expect(@article.image).to eq 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAzwAAAMuCAYAAADc6AZ'
   end
 
