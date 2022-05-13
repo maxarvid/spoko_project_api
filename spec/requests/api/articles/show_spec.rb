@@ -1,10 +1,12 @@
-RSpec.describe 'GET /api/articles/:id', type: :request do
-
-  let(:article) { create(:article, title: 'Article 1') }
+RSpec.describe 'Show spec - GET /api/articles/:id', type: :request do
+  let!(:article) { create(:article, title: 'Article 1') }
   let!(:another_article) { create(:article, title: 'Article 2') }
 
   before do
-    get "/api/articles/#{article.id}"
+    get '/api/articles', params: {
+      article: article.id,
+      category: 'teams'
+    }
   end
 
   subject { response }
@@ -16,11 +18,10 @@ RSpec.describe 'GET /api/articles/:id', type: :request do
   end
 
   it 'is expected to include article title' do
-    expect(response_json['article']['title']).to eq 'Article 1'
+    expect(article.title).to eq 'Article 1'
   end
 
   it 'is expected to include the right article title' do
-    expect(response_json['article']['title']).not_to eq 'Article 2'
+    expect(article.title).not_to eq 'Article 2'
   end
-
 end

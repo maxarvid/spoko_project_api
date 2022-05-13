@@ -1,5 +1,5 @@
 class Api::ArticlesController < ApplicationController
-
+  before_action :authenticate_user!, only: %i[create show]
   def index
     categories = Category.all.includes(:articles)
     response = serialize_categories(categories)
@@ -8,16 +8,22 @@ class Api::ArticlesController < ApplicationController
 
   def show
     article = Article.find(params[:id])
-    render json: { article: article }
+    render json: { article: }
   end
 
   def create
-    new_article = Article.create(params[:article].permit!)
+    category = Category.find_by(name: params[:article][:category])
+    new_article = Article.new(article_params)
+    new_article.category = category
+    new_article.save
+    new_article.attach_image(params[:article][:image])
     render json: { article: new_article }, status: 201
+  rescue StandardError
+    render json: { error: 'Invalid entry' }, status: 422
   end
-  
+
   private
-  
+
   def article_params
     params[:article].permit(:title, :body)
   end
@@ -29,5 +35,4 @@ class Api::ArticlesController < ApplicationController
     end
     response
   end
-
 end
