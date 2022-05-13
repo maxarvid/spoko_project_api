@@ -20,7 +20,7 @@ Article.create!(
 
 Article.create!(
   {
-    title: 'The Lean Football Manager Up',
+    title: 'The Lean Football Manager',
     body: 'The lean football manager  is a new appraoch to business thats being adopted around the world. ',
     author: 'Eric Ries',
     category: Category.find_by(name: 'Football')
@@ -35,13 +35,12 @@ Article.create!(
     category: Category.find_by(name: 'Tennis')
   }
 )
-
-p "created #{Article.count} articles"
+p "Created #{Article.count} articles"
 
 50.times do |_index|
+  size_choice = %w[extra_small small medium large extra-large]
   Product.create!(name: Faker::Commerce.product_name,
-                  size: Faker::Commerce.color,
+                  size: size_choice[rand(size_choice.length)],
                   price: Faker::Commerce.price(range: 0..1000.0, as_string: true))
 end
-
 p "Created #{Product.count} products"
