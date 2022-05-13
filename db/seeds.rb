@@ -1,8 +1,11 @@
+require 'faker'
+
 Article.destroy_all
 Category.destroy_all
+Product.destroy_all
+
 Category.create({ name: 'Football' })
 Category.create({ name: 'Tennis' })
-
 Article.create!(
   {
     title: 'Deep Football',
@@ -34,3 +37,11 @@ Article.create!(
 )
 
 p "created #{Article.count} articles"
+
+50.times do |_index|
+  Product.create!(name: Faker::Commerce.product_name,
+                  size: Faker::Commerce.color,
+                  price: Faker::Commerce.price(range: 0..1000.0, as_string: true))
+end
+
+p "Created #{Product.count} products"
