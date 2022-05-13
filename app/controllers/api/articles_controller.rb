@@ -30,9 +30,9 @@ class Api::ArticlesController < ApplicationController
 
   def serialize_categories(categories)
     response = {}
-    categories.each do |category|
-      response[category.name.downcase] = category.articles.as_json
-    end
+      categories.each do |category|
+        response[category.name.downcase] = category.articles.as_json
+      end
     response
   end
 end
