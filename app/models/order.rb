@@ -9,7 +9,7 @@ class Order < ApplicationRecord
   end
 
   def order_value
-    order_value = order.items.sum(&:price)
+    order_value = products.sum(&:price)
     #order_value = products.inject(0) {|sum, n| n.price  + sum}
   end
 end
