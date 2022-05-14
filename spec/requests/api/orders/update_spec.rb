@@ -1,8 +1,8 @@
 RSpec.describe 'Update an order with a PUT /api/orders/:id', type: :request do
   let(:user) { create(:user) }
-  let(:product_1) { create(:product, name: 'Tshirt') }
-  let(:product_2) { create(:product, name: 'Football') }
-  let(:product_3) { create(:product, name: 'Scarf') }
+  let(:product_1) { create(:product, name: 'Tshirt', price: 100 )}
+  let(:product_2) { create(:product, name: 'Football',price: 200) }
+  let(:product_3) { create(:product, name: 'Scarf',price: 300) }
   let(:order) { create(:order) }
   let!(:order_item_1) { create(:order_item, order:, product: product_2) }
   let!(:order_item_2) { create(:order_item, order:, product: product_3) }
@@ -28,6 +28,15 @@ RSpec.describe 'Update an order with a PUT /api/orders/:id', type: :request do
     it 'is expected one items to be a Scarf' do
       expect(order.serialized[:products].last["name"]).to eq "Scarf"
     end
+
+    it 'is to generate the total value of the order' do
+       expect(@order.value).to exist
+     end
+
+    # it 'is to generate to generate a value of 600 in order' do
+    #   expect(@order.value).to eq 600
+    # end
+    
     
   end
 
