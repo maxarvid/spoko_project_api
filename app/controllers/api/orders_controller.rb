@@ -1,5 +1,7 @@
 class Api::OrdersController < ApplicationController
   before_action :authenticate_user!, only: %i[create show]
+  before_action :set_order_status, only: [:update]
+
   def create
     order = authorize Order.create(order_params)
     product = Product.find(params[:order][:product_id])
@@ -17,6 +19,10 @@ class Api::OrdersController < ApplicationController
   end
 
   private
+
+  def set_order_status
+    # render json: { message: 'Order status.' }, status: 200 if params [:order][:status]
+  end
 
   def order_params
     params[:order].permit(:user_id)
