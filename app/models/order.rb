@@ -12,4 +12,8 @@ class Order < ApplicationRecord
     order_value = products.sum(&:price)
     #order_value = products.inject(0) {|sum, n| n.price  + sum}
   end
+
+  def order_quantity
+    order_quantity = products.count
+  end
 end

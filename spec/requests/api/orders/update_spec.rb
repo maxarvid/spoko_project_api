@@ -32,6 +32,10 @@ RSpec.describe 'Update an order with a PUT /api/orders/:id', type: :request do
      it 'is to generate to generate a value of 600 in order' do
        expect(@order.order_value).to eq 600
      end
+
+     it 'is return order quantity of 3' do
+      expect(@order.order_quantity).to eq 3
+    end
     
   end
 
