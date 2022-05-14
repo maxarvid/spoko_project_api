@@ -11,7 +11,7 @@ RSpec.describe 'Update an order with a PUT /api/orders/:id', type: :request do
 
   describe 'succesful order' do
     before do
-      put "/api/orders/#{order.id}", params: { product_id: product_2.id }
+      put "/api/orders/#{order.id}", params: { product_id: product_1.id }
       @order = Order.last
     end
 
@@ -29,14 +29,10 @@ RSpec.describe 'Update an order with a PUT /api/orders/:id', type: :request do
       expect(order.serialized[:products].last["name"]).to eq "Scarf"
     end
 
-    it 'is to generate the total value of the order' do
-       expect(@order.value).to exist
+     it 'is to generate to generate a value of 600 in order' do
+      binding.pry
+       expect(@order.order_value).to eq 600
      end
-
-    # it 'is to generate to generate a value of 600 in order' do
-    #   expect(@order.value).to eq 600
-    # end
-    
     
   end
 
