@@ -2,6 +2,7 @@ RSpec.describe Order, type: :model do
   describe 'Database table' do
     it { is_expected.to have_db_column(:id).of_type(:integer) }
     it { is_expected.to have_db_column(:user_id).of_type(:integer) }
+    it { is_expected.to have_db_column(:Finalised).of_type(:boolean) }
   end
 
   describe 'Factory' do
