@@ -1,6 +1,5 @@
 class Api::OrdersController < ApplicationController
   before_action :authenticate_user!, only: %i[create show update]
-  # before_action :set_order_status, only: [:update]
 
   def create
     order = authorize Order.create(order_params)
@@ -24,14 +23,6 @@ class Api::OrdersController < ApplicationController
   end
 
   private
-
-  def set_order_status
-  #   if params[:activity]
-  #     Order.update_attribute(:finalized, true)
-  #   else
-  #     Order.update_attribute(:finalized, false)
-  #  end
-   end
 
   def order_params
     params[:order].permit(:user_id)
