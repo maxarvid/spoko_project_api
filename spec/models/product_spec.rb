@@ -12,6 +12,7 @@ RSpec.describe Product, type: :model do
   end
 
   describe 'Associations' do
+    it { is_expected.to have_many :ratings }
   end
 
   describe 'Factory' do

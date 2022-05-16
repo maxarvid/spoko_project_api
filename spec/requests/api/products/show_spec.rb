@@ -17,6 +17,10 @@ RSpec.describe 'GET /api/products/:id' do
     it 'is expected to return only one product' do
       expect(response_json['product'].is_a?(Hash)).to eq true
     end
+
+    it 'is expected to return a rating for the product' do
+      expect(response_json['product']['rating']).to eq 3.8
+    end
   end
 
   describe 'unsuccesful' do
