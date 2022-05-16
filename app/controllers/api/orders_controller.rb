@@ -1,8 +1,9 @@
 class Api::OrdersController < ApplicationController
-  before_action :authenticate_user!, only: %i[create show]
-  before_action :set_order_status, only: [:update]
+  before_action :authenticate_user!, only: %i[create show update]
+  # before_action :set_order_status, only: [:update]
 
   def create
+    binding.pry
     order = authorize Order.create(order_params)
     product = Product.find(params[:order][:product_id])
     order.items.create(product:)

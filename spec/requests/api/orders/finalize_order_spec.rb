@@ -4,11 +4,13 @@ RSpec.describe 'PUT orders with a status of finalized ', type: :request do
   let(:product) { create(:product) }
   let(:member_credentials) { user.create_new_auth_token }
   let(:editor_credentials) { editor.create_new_auth_token }
+  let(:order) { create(:order) }
+
   subject { response }
 
   describe 'status during order' do
     before do
-      post '/api/orders', params: {
+      put "/api/orders/#{order.id}", params: {
         order: {
           product_id: product.id, user_id: user.id,
           activity: 'finalize'
