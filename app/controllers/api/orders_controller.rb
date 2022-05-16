@@ -3,7 +3,6 @@ class Api::OrdersController < ApplicationController
   # before_action :set_order_status, only: [:update]
 
   def create
-    binding.pry
     order = authorize Order.create(order_params)
     product = Product.find(params[:order][:product_id])
     order.items.create(product:)
@@ -12,13 +11,11 @@ class Api::OrdersController < ApplicationController
 
   def update
     order = Order.find(params[:id])
-
-    if params[:activity]
-      order.update_attribute(:Finalised, true)
+    if params[:order][:activity]
+      order.update_attribute(:finalised, true)
       render json: { message: 'Your order will be dispatched soon' }
     else
-
-      product = Product.find(params[:product_id])
+      product = Product.find(params[:order][:product_id])
       order.items.create(product:)
       render json: { order: order.serialized, message: "#{product.name} added" }, status: 200
     end
