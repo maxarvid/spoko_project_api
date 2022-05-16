@@ -6,10 +6,17 @@ class Api::ProductsController < ApplicationController
 
   def show
     product = Product.find(params['id'])
-    render json: { product: }
-    
+    response = serialize_ratings(product)
+    render json: { product: response }
   rescue StandardError
     render json: { error: 'No such item exists' }, status: 422
   end
 
+  private
+
+  def serialize_ratings(product)
+    response = product.as_json
+    response[:rating] = product.rating.as_json
+    response
+  end
 end
