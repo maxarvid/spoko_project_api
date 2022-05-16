@@ -12,12 +12,9 @@ class Api::ArticlesController < ApplicationController
   end
 
   def create
-    category = Category.find_by(name: params[:article][:category])
-    new_article = Article.new(article_params)
-    new_article.category = category
-    new_article.save
-    new_article.attach_image(params[:article][:image])
-    render json: { article: new_article }, status: 201
+    article = Article.new.create_article_with_category(article_params)
+    article.attach_image(params[:article][:image])
+    render json: { article: article }, status: 201
   rescue StandardError
     render json: { error: 'Invalid entry' }, status: 422
   end
@@ -25,14 +22,14 @@ class Api::ArticlesController < ApplicationController
   private
 
   def article_params
-    params[:article].permit(:title, :body)
+    params[:article].permit(:title, :body, :category)
   end
 
   def serialize_categories(categories)
     response = {}
-      categories.each do |category|
-        response[category.name.downcase] = category.articles.as_json
-      end
+    categories.each do |category|
+      response[category.name.downcase] = category.articles.as_json
+    end
     response
   end
 end
