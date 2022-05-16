@@ -13,7 +13,7 @@ RSpec.describe Rating, type: :model do
 
   describe 'Factory' do
     it 'is expected to be valid' do
-      expect(create(:product)).to be_valid
+      expect(create(:rating)).to be_valid
     end
   end
 end

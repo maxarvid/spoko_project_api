@@ -1,5 +1,6 @@
 RSpec.describe 'GET /api/products/:id' do
   let!(:product) { create(:product, name: 'tshirt') }
+  
 
   subject { response }
 
