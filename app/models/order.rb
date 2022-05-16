@@ -7,4 +7,13 @@ class Order < ApplicationRecord
     serialization = as_json
     serialization.merge!(products: products.as_json)
   end
+
+  def order_value
+    order_value = products.sum(&:price)
+    #order_value = products.inject(0) {|sum, n| n.price  + sum}
+  end
+
+  def order_quantity
+    order_quantity = products.count
+  end
 end
